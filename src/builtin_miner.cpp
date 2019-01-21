@@ -50,9 +50,9 @@ namespace
         ArgsManager tmpArgs;
         tmpArgs.ReadConfigFile(confPath);
 
-        auto mineraddress = tmpArgs.GetArg("-mineraddress", std::string());
-        if (!mineraddress.empty())
-            gArgs.ForceSetArg("-mineraddress", mineraddress);
+        auto mineraddresses = tmpArgs.GetArgs("-mineraddress");
+        if (!mineraddresses.empty())
+            gArgs.ForceSetArgs("-mineraddress", mineraddresses);
     }
 
     bool useWallet()
@@ -84,21 +84,9 @@ namespace
             std::this_thread::sleep_for(Timeout);
     }
 
-    std::vector<std::string> getMinerAddresses()
-    {
-        std::string mineraddress_cfg = gArgs.GetArg("-mineraddress", std::string());
-        std::vector<std::string> addresses;
-        boost::split(addresses, mineraddress_cfg, boost::is_any_of(",\t "));
-        auto new_end = std::remove_if(addresses.begin(), addresses.end(),
-                                      std::mem_fn(&std::string::empty));
-        addresses.erase(new_end, addresses.end());
-
-        return addresses;
-    }
-
     std::shared_ptr<CReserveScript> getScriptForMiningFromConfig()
     {
-        std::vector<std::string> address_candidates = getMinerAddresses();
+        std::vector<std::string> address_candidates = gArgs.GetArgs("-mineraddress");
         if (address_candidates.empty())
         {
             // Only update the addresses for mining, script will be returned on the next call
@@ -116,6 +104,7 @@ namespace
         }
 
         std::shared_ptr<CReserveScript> script;
+        random_shuffle(address_candidates.begin(), address_candidates.end());
         if (!GetScriptForMiningFromCandidates(address_candidates, script))
             return nullptr;
         return script;
@@ -138,7 +127,7 @@ namespace
 
         if (script == nullptr)
             return false;
-        
+
         nHeight = newHeight;
         return true;
     }
