@@ -27,7 +27,7 @@
 
 namespace
 {
-    using tfm::format; 
+    using tfm::format;
 
     const double DefaultCpuLimit = 0.01;
     const auto Timeout = std::chrono::milliseconds(200);
@@ -117,9 +117,6 @@ namespace
             LOCK(cs_main);
             newHeight = chainActive.Height();
         }
-        if (newHeight == nHeight && script != nullptr)
-            return true;
-
         if (useWallet())
             script = getScriptForMiningFromWallet();
         else
@@ -165,8 +162,8 @@ namespace
                     auto shared_pblock = std::make_shared<const CBlock>(*pblock);
                     if (ProcessNewBlock(params, shared_pblock, true, nullptr))
                         script->KeepScript();
-                    return;
                 }
+                return;
             }
             cpuLimiter->suspendMe();
         }
@@ -248,7 +245,7 @@ namespace
         running = false;
 
         if (cpuLimiter != nullptr)
-            cpuLimiter->stop();        
+            cpuLimiter->stop();
         for (auto it = workThreads.begin(); it != workThreads.end(); ++it)
             it->join();
 
