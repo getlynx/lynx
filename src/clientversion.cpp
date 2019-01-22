@@ -12,8 +12,7 @@
  * for both bitcoind and bitcoin-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-// const std::string CLIENT_NAME("Lynx");
-const std::string CLIENT_NAME("Satoshi"); // Some peers break connections, if the client's name differs from Satoshi
+const std::string CLIENT_NAME("Lynx");
 
 /**
  * Client version number
