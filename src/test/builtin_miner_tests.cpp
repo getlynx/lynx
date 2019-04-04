@@ -13,21 +13,8 @@
 #include "builtin_miner.h"
 
 
-extern CWallet* pwalletMain;
-
 namespace
 {
-    void enableWallet()
-    {
-        if (vpwallets.empty())
-            vpwallets.push_back(pwalletMain);
-    }
-
-    void disableWallet()
-    {
-        vpwallets.clear();
-    }
-
     std::unique_ptr<ArgsManager> parse(std::vector<const char*> argv)
     {
         std::unique_ptr<ArgsManager> args(new ArgsManager());        
@@ -45,6 +32,17 @@ namespace
         ~BuiltinMinerTestingSetup()
         {
             disableWallet();
+        }
+
+        void enableWallet()
+        {
+            if (vpwallets.empty())
+                vpwallets.push_back(pwalletMain.get());
+        }
+
+        void disableWallet()
+        {
+            vpwallets.clear();
         }
     };
 }
