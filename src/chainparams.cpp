@@ -140,10 +140,10 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xfa;
-        pchMessageStart[1] = 0xcf;
-        pchMessageStart[2] = 0xb3;
-        pchMessageStart[3] = 0xdc;
+        pchMessageStart[0] = 0xc0; //0xfa;
+        pchMessageStart[1] = 0xc0; //0xcf;
+        pchMessageStart[2] = 0xc0; //0xb3;
+        pchMessageStart[3] = 0xc0; //0xdc;
         nDefaultPort = 22566;
         nPruneAfterHeight = 100000;
 
@@ -178,7 +178,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (  1492, uint256S("0xe1e3c5fd193697408f7dd987f03d114bee961eee1f506717266548002330fa79"))
+            (     1492, uint256S("0xe1e3c5fd193697408f7dd987f03d114bee961eee1f506717266548002330fa79"))
         };
 
         chainTxData = ChainTxData{
