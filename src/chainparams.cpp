@@ -294,7 +294,16 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                { 546, uint256S("000000002a936ca763904c3c35fce2f3556c559c0214345d31b1bcebf76acb70")},
+                {  546, uint256S("0x000000002a936ca763904c3c35fce2f3556c559c0214345d31b1bcebf76acb70")},
+                {10000, uint256S("0x162c95555e7313f9720d8437cb56a66e5f2c83122a459b0d4385fb672ff8f551")},
+                {20000, uint256S("0x2369794922491928565ca63245ae5c4ddc70be670c30c8dc2910c16899afbc81")},
+                {30000, uint256S("0xf3d8b234a540b61dc3c5b0eb46dd0c313e0f1a6b7b3236f2e480398c917ce3de")},
+                {40000, uint256S("0x230c2bac6edf2cec84859d6388371e1d15d6c6f9d2e1d81fda09593c0d3242c3")},
+                {50000, uint256S("0xd068092e30fe555d3f64e3e8dda2238e1879378e546977257588ca91d3011f8f")},
+                {60000, uint256S("0xe85d4cb581b49573bf100ccb37683a8d5ff8a88884bfaf11952b725a70ceb66c")},
+                {70000, uint256S("0x6955e2ade029aac81889b68b42249100e6fb4c1082713e3e3be634099325e389")},
+                {80000, uint256S("0x58ebe159a221183fe1ca5474d008dd79c16154683ffe0300de5f938dc3b771cd")},
+                {90000, uint256S("0x8d9dfa0204b24493141e5b917806a237a7a755b597a138ecc6a7a250bf71ccda")}
 			}
         };
 
