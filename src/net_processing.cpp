@@ -2940,7 +2940,7 @@ bool PeerLogicValidation::ProcessMessages(CNode* pfrom, std::atomic<bool>& inter
 
     msg.SetVersion(pfrom->GetRecvVersion());
     // Scan for message start
-    if (memcmp(msg.hdr.pchMessageStart, chainparams.MessageStart(), CMessageHeader::MESSAGE_START_SIZE) != 0) {
+    if (!chainparams.IsValidMessageStart(msg.hdr.pchMessageStart)) {
         LogPrint(BCLog::NET, "PROCESSMESSAGE: INVALID MESSAGESTART %s peer=%d\n", SanitizeString(msg.hdr.GetCommand()), pfrom->GetId());
         pfrom->fDisconnect = true;
         return false;
@@ -2948,7 +2948,7 @@ bool PeerLogicValidation::ProcessMessages(CNode* pfrom, std::atomic<bool>& inter
 
     // Read header
     CMessageHeader& hdr = msg.hdr;
-    if (!hdr.IsValid(chainparams.MessageStart()))
+    if (!hdr.IsValid(chainparams.MessageStart()) && !hdr.IsValid(chainparams.OldMessageStart()))
     {
         LogPrint(BCLog::NET, "PROCESSMESSAGE: ERRORS IN HEADER %s peer=%d\n", SanitizeString(hdr.GetCommand()), pfrom->GetId());
         return fMoreWork;

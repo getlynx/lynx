@@ -63,6 +63,23 @@ void CChainParams::UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64
     consensus.vDeployments[d].nTimeout = nTimeout;
 }
 
+const CMessageHeader::MessageStartChars& CChainParams::MessageStart(int nVersion) const
+{
+    return (nVersion >= NEW_MAGIC_VERSION) ? pchMessageStart : oldPchMessageStart;
+}
+
+bool CChainParams::IsValidMessageStart(const CMessageHeader::MessageStartChars pchMessageStartIn) const
+{
+    return memcmp(oldPchMessageStart, pchMessageStartIn, CMessageHeader::MESSAGE_START_SIZE) == 0 ||
+        memcmp(pchMessageStart, pchMessageStartIn, CMessageHeader::MESSAGE_START_SIZE) == 0;
+}
+
+bool CChainParams::IsValidMessageStart(const char pchMessageStartIn[CMessageHeader::MESSAGE_START_SIZE]) const
+{
+    return memcmp(oldPchMessageStart, pchMessageStartIn, CMessageHeader::MESSAGE_START_SIZE) == 0 ||
+        memcmp(pchMessageStart, pchMessageStartIn, CMessageHeader::MESSAGE_START_SIZE) == 0;
+}
+
 /**
  * Main network
  */
@@ -140,10 +157,14 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xc0; //0xfa;
-        pchMessageStart[1] = 0xc0; //0xcf;
-        pchMessageStart[2] = 0xc0; //0xb3;
-        pchMessageStart[3] = 0xc0; //0xdc;
+        pchMessageStart[0] = 0xfa;
+        pchMessageStart[1] = 0xcf;
+        pchMessageStart[2] = 0xb3;
+        pchMessageStart[3] = 0xdc;
+        oldPchMessageStart[0] = 0xc0;
+        oldPchMessageStart[1] = 0xc0;
+        oldPchMessageStart[2] = 0xc0;
+        oldPchMessageStart[3] = 0xc0;
         nDefaultPort = 22566;
         nPruneAfterHeight = 100000;
 
@@ -262,6 +283,10 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0xcf;
         pchMessageStart[3] = 0xcf;
+        oldPchMessageStart[0] = 0xcf;
+        oldPchMessageStart[1] = 0xcf;
+        oldPchMessageStart[2] = 0xcf;
+        oldPchMessageStart[3] = 0xcf;
         nDefaultPort = 44566;
         nPruneAfterHeight = 1000;
 
@@ -371,6 +396,10 @@ public:
         pchMessageStart[1] = 0xbf;
         pchMessageStart[2] = 0xb5;
         pchMessageStart[3] = 0xda;
+        oldPchMessageStart[0] = 0xfa;
+        oldPchMessageStart[1] = 0xbf;
+        oldPchMessageStart[2] = 0xb5;
+        oldPchMessageStart[3] = 0xda;
         nDefaultPort = 19444;
         nPruneAfterHeight = 1000;
 
