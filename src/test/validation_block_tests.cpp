@@ -56,7 +56,8 @@ std::shared_ptr<CBlock> Block(const uint256& prev_hash)
 
     auto ptemplate = BlockAssembler(Params()).CreateNewBlock(pubKey, false);
     auto pblock = std::make_shared<CBlock>(ptemplate->block);
-    pblock->hashPrevBlock = prev_hash;
+    // Commented out the following line because nBits of the block are calculated incorrectly because of it.
+    // pblock->hashPrevBlock = prev_hash;
     pblock->nTime = ++time;
 
     CMutableTransaction txCoinbase(*pblock->vtx[0]);
