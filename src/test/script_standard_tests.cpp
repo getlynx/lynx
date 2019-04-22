@@ -309,16 +309,6 @@ BOOST_AUTO_TEST_CASE(script_standard_ExtractDestinations)
     s.clear();
     s << OP_RETURN << std::vector<unsigned char>({75});
     BOOST_CHECK(!ExtractDestinations(s, whichType, addresses, nRequired));
-
-    // TX_WITNESS_V0_KEYHASH
-    s.clear();
-    s << OP_0 << ToByteVector(pubkeys[0].GetID());
-    BOOST_CHECK(!ExtractDestinations(s, whichType, addresses, nRequired));
-
-    // TX_WITNESS_V0_SCRIPTHASH
-    s.clear();
-    s << OP_0 << ToByteVector(CScriptID(redeemScript));
-    BOOST_CHECK(!ExtractDestinations(s, whichType, addresses, nRequired));
 }
 
 BOOST_AUTO_TEST_CASE(script_standard_GetScriptFor_)
