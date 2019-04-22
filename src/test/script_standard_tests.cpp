@@ -170,11 +170,6 @@ BOOST_AUTO_TEST_CASE(script_standard_Solver_failure)
     s << OP_RETURN << std::vector<unsigned char>({75}) << OP_ADD;
     BOOST_CHECK(!Solver(s, whichType, solutions));
 
-    // TX_WITNESS with unknown version
-    s.clear();
-    s << OP_1 << ToByteVector(pubkey);
-    BOOST_CHECK(!Solver(s, whichType, solutions));
-
     // TX_WITNESS with incorrect program size
     s.clear();
     s << OP_0 << std::vector<unsigned char>(19, 0x01);
