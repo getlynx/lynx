@@ -55,9 +55,6 @@ public:
     const Consensus::Params& GetConsensus() const { return consensus; }
     const CMessageHeader::MessageStartChars& MessageStart() const { return pchMessageStart; }
     const CMessageHeader::MessageStartChars& OldMessageStart() const { return oldPchMessageStart; }
-    const CMessageHeader::MessageStartChars& MessageStart(int nVersion) const;
-    bool IsValidMessageStart(const CMessageHeader::MessageStartChars pchMessageStartIn) const;
-    bool IsValidMessageStart(const char pchMessageStartIn[CMessageHeader::MESSAGE_START_SIZE]) const;
     int GetDefaultPort() const { return nDefaultPort; }
 
     const CBlock& GenesisBlock() const { return genesis; }

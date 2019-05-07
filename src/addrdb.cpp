@@ -68,8 +68,11 @@ bool DeserializeDB(Stream& stream, Data& data, bool fCheckSum = true)
         unsigned char pchMsgTmp[4];
         verifier >> FLATDATA(pchMsgTmp);
         // ... verify the network matches ours
-        if (!Params().IsValidMessageStart(pchMsgTmp))
+        if (memcmp(pchMsgTmp, Params().MessageStart(), sizeof(pchMsgTmp)) && 
+            memcmp(pchMsgTmp, Params().OldMessageStart(), sizeof(pchMsgTmp)))
+        {
             return error("%s: Invalid network magic number", __func__);
+        }
 
         // de-serialize data
         verifier >> data;

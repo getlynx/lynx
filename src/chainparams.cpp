@@ -63,23 +63,6 @@ void CChainParams::UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64
     consensus.vDeployments[d].nTimeout = nTimeout;
 }
 
-const CMessageHeader::MessageStartChars& CChainParams::MessageStart(int nVersion) const
-{
-    return (nVersion >= NEW_MAGIC_VERSION) ? pchMessageStart : oldPchMessageStart;
-}
-
-bool CChainParams::IsValidMessageStart(const CMessageHeader::MessageStartChars pchMessageStartIn) const
-{
-    return memcmp(oldPchMessageStart, pchMessageStartIn, CMessageHeader::MESSAGE_START_SIZE) == 0 ||
-        memcmp(pchMessageStart, pchMessageStartIn, CMessageHeader::MESSAGE_START_SIZE) == 0;
-}
-
-bool CChainParams::IsValidMessageStart(const char pchMessageStartIn[CMessageHeader::MESSAGE_START_SIZE]) const
-{
-    return memcmp(oldPchMessageStart, pchMessageStartIn, CMessageHeader::MESSAGE_START_SIZE) == 0 ||
-        memcmp(pchMessageStart, pchMessageStartIn, CMessageHeader::MESSAGE_START_SIZE) == 0;
-}
-
 /**
  * Main network
  */
