@@ -65,7 +65,7 @@ void CChainParams::UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64
 
 const CMessageHeader::MessageStartChars& CChainParams::MessageStart(int nVersion) const
 {
-    return (nVersion >= NEW_MAGIC_VERSION) ? pchMessageStart : oldPchMessageStart;
+    return (nVersion == 0 || nVersion >= NEW_MAGIC_VERSION) ? pchMessageStart : oldPchMessageStart;
 }
 
 bool CChainParams::IsValidMessageStart(const CMessageHeader::MessageStartChars pchMessageStartIn) const
