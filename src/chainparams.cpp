@@ -89,17 +89,17 @@ public:
 
         consensus.HardForkRule1params = {{2630000, 10},
                                          {2730000, 20},
-                                         {2830000, 30},
-                                         {2930000, 40},
-                                         {3030000, 50}};
+                                         {2780000, 30},
+                                         {2800000, 40},
+                                         {2820000, 50}};
 
         consensus.HardForkRule2params = {{2680000, 2},
-                                         {3230000, 3},
-                                         {3730000, 4}};
+                                         {2850000, 3},
+                                         {3000000, 4}};
 
-        consensus.HardForkRule3params = {{2780000, 1},
-                                         {3630000, 2},
-                                         {5630000, 3}};
+        consensus.HardForkRule3params = {{2760000, 1},
+                                         {2940000, 2},
+                                         {3500000, 3}};
 
         consensus.HardForkRule2DifficultyPrevBlockCount = 10;
         consensus.HardForkRule2LowerLimitMinBalance = 1000*COIN;
