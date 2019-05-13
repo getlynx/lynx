@@ -216,11 +216,12 @@ public:
         consensus.HardFork2Height = 2;
         consensus.HardFork3Height = 3;
 
-        consensus.HardForkRule1params = {{250, 10},
-                                         {260, 20},
-                                         {270, 30},
-                                         {280, 40},
-                                         {290, 60}};
+        consensus.HardForkRule1params = {{   250, 10},
+                                         {   260, 20},
+                                         {   270, 30},
+                                         {   280, 40},
+                                         {   290, 50},
+                                         {200000, 60}};
 
         consensus.HardForkRule2params = {{255, 2},
                                          {310, 3},
