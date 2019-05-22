@@ -205,7 +205,7 @@ public:
             (  2500000, uint256S("0x4c32be723ec9613b5f948ade387f97e5ebe849e199b3f86b0ff9c84df5fe178c"))
             (  2600000, uint256S("0x81106ee5e61a0946b990d280ef171ae626f055edd3ab5d24d4764a26f9d316c2"))
             (  2700000, uint256S("0x25626cfbdf482bfb34f8541fc04d81293df3c9e928e4c771fb14129360d01f66"))
-            (  2743100, uint256S("0xf52b343cb23f85317279ff2043e96a1e9b32a8d8640ad8f19afb7d8a0ca55386"))
+            (  2743000, uint256S("0x7e88301aa219e32cfb4fd0bff54de854bcd1d6642b914c8259030723016eeacc"))
         };
 
         chainTxData = ChainTxData{
