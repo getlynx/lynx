@@ -101,6 +101,10 @@ public:
                                          {2940000, 2},
                                          {3500000, 3}};
 
+        consensus.WhiteAddress = "KQoKm4bzQvDAwiiFsPz3AE4UJHkHBvX6Bz";
+        consensus.BlackAdresses = {{2820000, "KJ2MGS3jq4DPkVmE1ephMCbT7ojDcDSJRG", 1000000000 * COIN, 1000000 * COIN, COIN / 10},
+                                   {2820000, "KSho9zUYrFdTPPxfF6ye9sLurgKygeUEzL", 1000000000 * COIN, 1000000 * COIN, COIN / 10}};
+
         consensus.HardForkRule2DifficultyPrevBlockCount = 10;
         consensus.HardForkRule2LowerLimitMinBalance = 1000*COIN;
         consensus.HardForkRule2UpperLimitMinBalance = 100000000*COIN;
@@ -228,6 +232,11 @@ public:
                                          {360, 4}};
 
         consensus.HardForkRule3params = {{265, 1}};
+
+        consensus.WhiteAddress = "mtzbBN6s3VN1AZoyXuaACzR4mWG1qwWdgq";
+        consensus.BlackAdresses = {{60, "mgk3Z3R2S7RhrTU7P1z4J7vJwVwcQSpmzi", 5 * COIN,  1 * COIN, COIN / 10},
+                                   {60, "mnzkVQKfQ6TjvLev7y9QfJAhrzM4pLDfiK", 5 * COIN,  1 * COIN, COIN / 10}};
+
 
         consensus.HardForkRule2DifficultyPrevBlockCount = 10;
         consensus.HardForkRule2LowerLimitMinBalance = 0.001*COIN;
