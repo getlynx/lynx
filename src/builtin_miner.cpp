@@ -32,7 +32,7 @@ namespace
     const double DefaultCpuLimit = 0.01;
     const auto Timeout = std::chrono::milliseconds(200);
     const auto ReloadConfigInterval = std::chrono::seconds(120);
-    const auto Log_Speed_interval_sec = 5;
+    const auto Log_Speed_interval_sec = 60;
 
     std::mutex mutex;
     double cpuLimit = DefaultCpuLimit;
