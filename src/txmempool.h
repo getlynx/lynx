@@ -225,24 +225,16 @@ public:
     {
         // Compare feerate with ancestors to feerate of the transaction, and
         // return the fee/size for the min.
-        double f1 = (double)a.GetModifiedFee() * a.GetSizeWithAncestors();
-        double f2 = (double)a.GetModFeesWithAncestors() * a.GetTxSize();
+        double f1 = (double)a.GetModifiedFee() * a.GetSizeWithDescendants();
+        double f2 = (double)a.GetModFeesWithDescendants() * a.GetTxSize();
 
-        if (f1 > f2) {
-            mod_fee = a.GetModFeesWithAncestors();
-            size = a.GetSizeWithAncestors();
+        if (f2 > f1) {
+            mod_fee = a.GetModFeesWithDescendants();
+            size = a.GetSizeWithDescendants();
         } else {
             mod_fee = a.GetModifiedFee();
             size = a.GetTxSize();
         }
-    }
-
-    // Calculate which score to use for an entry (avoiding division).
-    bool UseDescendantScore(const CTxMemPoolEntry &a) const
-    {
-        double f1 = (double)a.GetModifiedFee() * a.GetSizeWithDescendants();
-        double f2 = (double)a.GetModFeesWithDescendants() * a.GetTxSize();
-        return f2 > f1;
     }
 };
 

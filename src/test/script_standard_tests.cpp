@@ -170,11 +170,6 @@ BOOST_AUTO_TEST_CASE(script_standard_Solver_failure)
     s << OP_RETURN << std::vector<unsigned char>({75}) << OP_ADD;
     BOOST_CHECK(!Solver(s, whichType, solutions));
 
-    // TX_WITNESS with unknown version
-    s.clear();
-    s << OP_1 << ToByteVector(pubkey);
-    BOOST_CHECK(!Solver(s, whichType, solutions));
-
     // TX_WITNESS with incorrect program size
     s.clear();
     s << OP_0 << std::vector<unsigned char>(19, 0x01);
@@ -313,16 +308,6 @@ BOOST_AUTO_TEST_CASE(script_standard_ExtractDestinations)
     // TX_NULL_DATA
     s.clear();
     s << OP_RETURN << std::vector<unsigned char>({75});
-    BOOST_CHECK(!ExtractDestinations(s, whichType, addresses, nRequired));
-
-    // TX_WITNESS_V0_KEYHASH
-    s.clear();
-    s << OP_0 << ToByteVector(pubkeys[0].GetID());
-    BOOST_CHECK(!ExtractDestinations(s, whichType, addresses, nRequired));
-
-    // TX_WITNESS_V0_SCRIPTHASH
-    s.clear();
-    s << OP_0 << ToByteVector(CScriptID(redeemScript));
     BOOST_CHECK(!ExtractDestinations(s, whichType, addresses, nRequired));
 }
 
@@ -523,12 +508,7 @@ BOOST_AUTO_TEST_CASE(script_standard_IsMine)
         scriptPubKey.clear();
         scriptPubKey << OP_0 << ToByteVector(pubkeys[0].GetID());
 
-        // Keystore has key, but no P2SH redeemScript
-        result = IsMine(keystore, scriptPubKey, isInvalid);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-        BOOST_CHECK(!isInvalid);
-
-        // Keystore has key and P2SH redeemScript
+        // Keystore implicitly has key and P2SH redeemScript
         keystore.AddCScript(scriptPubKey);
         result = IsMine(keystore, scriptPubKey, isInvalid);
         BOOST_CHECK_EQUAL(result, ISMINE_SPENDABLE);

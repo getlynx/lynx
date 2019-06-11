@@ -66,6 +66,14 @@ namespace
             return;
         }
 
+        struct evkeyvalq* headers = evhttp_request_get_output_headers(req.get());
+        if (headers == nullptr)
+        {
+            // Failed to get request header
+            return;
+        }
+        evhttp_add_header(headers, "Host", host.c_str());
+
         UniValue params(UniValue::VOBJ);
         params.pushKV("host", lynxhost);
         params.pushKV("ip", ip);

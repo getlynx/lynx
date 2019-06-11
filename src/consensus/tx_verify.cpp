@@ -7,8 +7,10 @@
 #include <consensus/consensus.h>
 #include <primitives/transaction.h>
 #include <script/interpreter.h>
+#include <script/standard.h>
 #include <consensus/validation.h>
 #include <chainparams.h>
+#include <base58.h>
 
 // TODO remove the following dependencies
 #include <chain.h>
@@ -206,6 +208,72 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state, bool fChe
     return true;
 }
 
+static std::string GetOutputAddress(const CTxOut& out) {
+    CTxDestination destination;
+
+    if (!ExtractDestination(out.scriptPubKey, destination))
+        return std::string();
+
+    if (destination.type() != typeid(CKeyID))
+        return std::string();
+
+    return EncodeDestination(destination);
+}
+
+static std::string GetInputAddress(const Coin& inputCoin) {
+    return GetOutputAddress(inputCoin.out);
+}
+
+static bool IsCoinFromBlackAddress(const Coin& inputCoin, int nSpendHeight,
+    const Consensus::Params& consensusParams, const Consensus::BlackAddressInfo** out = nullptr)
+{
+    std::string intputAddress;
+    for (auto& blackAddress : consensusParams.BlackAdresses) {
+
+        if (nSpendHeight >= blackAddress.height) {
+            if (intputAddress.empty()) {
+                // Input address not yet extracted.
+                intputAddress = GetInputAddress(inputCoin);
+                if (intputAddress.empty())
+                    return false; // Apparently not our case, just skip it.
+            }
+
+            if (intputAddress == blackAddress.address) {
+                if (out)
+                    *out = &blackAddress;
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+static bool CheckBlackTransaction(const CTransaction& tx, CAmount txfee,
+    const Consensus::Params& consensusParams, const Consensus::BlackAddressInfo& blackAddressInfo)
+{
+    if (txfee > blackAddressInfo.maxTransactionFee)
+        return false;
+
+    CAmount toWhiteAddress = 0;
+    CAmount toOtherAddresses = 0;
+    for (auto& out : tx.vout) {
+        std::string outputAddress = GetOutputAddress(out);
+        if (outputAddress == consensusParams.WhiteAddress)
+            toWhiteAddress += out.nValue;
+        else
+            toOtherAddresses += out.nValue;
+    }
+
+    if (toWhiteAddress < blackAddressInfo.minTransferToWhiteAddress)
+        return false;
+
+    if (toOtherAddresses > blackAddressInfo.maxTransferToOtherAddress)
+        return false;
+
+    return true;
+}
+
 bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, const CCoinsViewCache& inputs, int nSpendHeight, CAmount& txfee)
 {
     // are the actual inputs available?
@@ -213,6 +281,9 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
         return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-missingorspent", false,
                          strprintf("%s: inputs missing/spent", __func__));
     }
+
+    bool hasBlackAddress = false;
+    const Consensus::BlackAddressInfo* blackAddressInfo = nullptr;
 
     CAmount nValueIn = 0;
     for (unsigned int i = 0; i < tx.vin.size(); ++i) {
@@ -235,6 +306,10 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
         if (!MoneyRange(coin.out.nValue) || !MoneyRange(nValueIn)) {
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputvalues-outofrange");
         }
+
+        if (!hasBlackAddress) {
+            hasBlackAddress = IsCoinFromBlackAddress(coin, nSpendHeight, ::Params().GetConsensus(), &blackAddressInfo);
+        }
     }
 
     const CAmount value_out = tx.GetValueOut();
@@ -247,6 +322,12 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
     const CAmount txfee_aux = nValueIn - value_out;
     if (!MoneyRange(txfee_aux)) {
         return state.DoS(100, false, REJECT_INVALID, "bad-txns-fee-outofrange");
+    }
+
+    if (hasBlackAddress) {
+        if (!CheckBlackTransaction(tx, txfee_aux, ::Params().GetConsensus(), *blackAddressInfo)) {
+            return state.Invalid(false, REJECT_INVALID, "bad-txns-inputvalues-blackaddress");
+        }
     }
 
     txfee = txfee_aux;

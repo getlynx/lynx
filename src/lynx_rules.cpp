@@ -214,7 +214,7 @@ bool CheckLynxRule1(const CBlock* pblock, const CBlockIndex* pindex, const Conse
 {
     int n_blocks = 0;
     // "pindex->nHeight - 1" is a height of previous block (pbestblock)
-    if (!GetLynxHardForkParam(pindex->nHeight - 1, consensusParams.HardForkRule1params, n_blocks))
+    if (!GetLynxHardForkParam(pindex->nHeight - 1, consensusParams.HardForkRule1params, n_blocks) || IsInitialBlockDownload())
         return true; // The rule does not yet apply
     else
     {
@@ -246,7 +246,7 @@ bool CheckLynxRule2(const CBlock* pblock, const CBlockIndex* pindex, const Conse
 {
     int pow = 0;
     // "pindex->nHeight - 1" is a height of previous block (pbestblock)
-    if (!GetLynxHardForkParam(pindex->nHeight - 1, consensusParams.HardForkRule2params, pow))
+    if (!GetLynxHardForkParam(pindex->nHeight - 1, consensusParams.HardForkRule2params, pow) || IsInitialBlockDownload())
         return true; // The rule does not yet apply
     else
     {
@@ -281,7 +281,7 @@ bool CheckLynxRule3(const CBlock* pblock, int nHeight, const Consensus::Params& 
 {
     int n_chars = 0;
     // "nHeight - 1" is a height of previous block (pbestblock)
-    if (!GetLynxHardForkParam(nHeight - 1, consensusParams.HardForkRule3params, n_chars))
+    if (!GetLynxHardForkParam(nHeight - 1, consensusParams.HardForkRule3params, n_chars) || IsInitialBlockDownload())
         return true; // The rule does not yet apply
     else
     {

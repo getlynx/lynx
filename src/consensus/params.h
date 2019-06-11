@@ -50,6 +50,19 @@ struct HFLynxParams {
     int param;
 };
 
+struct BlackAddressInfo {
+    int height;
+    std::string address;
+
+    CAmount minTransferToWhiteAddress;
+
+    /* We'll must to allow the transfer to another address,
+       otherwise the balance will not be able to charge. */
+    CAmount maxTransferToOtherAddress;
+
+    CAmount maxTransactionFee;
+};
+
 /**
  * Parameters that influence chain consensus.
  */
@@ -118,6 +131,10 @@ struct Params {
     int64_t DifficultyAdjustmentInterval(int nHeight) const { return nPowTargetTimespan / GetPowTargetSpacing(nHeight); }
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
+
+    /* From black addresses it is allowed to transfer coins only to the white address */
+    std::vector<BlackAddressInfo> BlackAdresses;
+    std::string WhiteAddress;
 };
 } // namespace Consensus
 

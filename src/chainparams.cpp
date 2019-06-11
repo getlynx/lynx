@@ -89,17 +89,21 @@ public:
 
         consensus.HardForkRule1params = {{2630000, 10},
                                          {2730000, 20},
-                                         {2830000, 30},
-                                         {2930000, 40},
-                                         {3030000, 50}};
+                                         {2780000, 30},
+                                         {2800000, 40},
+                                         {2820000, 50}};
 
         consensus.HardForkRule2params = {{2680000, 2},
-                                         {3230000, 3},
-                                         {3730000, 4}};
+                                         {2850000, 3},
+                                         {3000000, 4}};
 
-        consensus.HardForkRule3params = {{2780000, 1},
-                                         {3630000, 2},
-                                         {5630000, 3}};
+        consensus.HardForkRule3params = {{2760000, 1},
+                                         {2940000, 2},
+                                         {3500000, 3}};
+
+        consensus.WhiteAddress = "KQoKm4bzQvDAwiiFsPz3AE4UJHkHBvX6Bz";
+        consensus.BlackAdresses = {{2820000, "KJ2MGS3jq4DPkVmE1ephMCbT7ojDcDSJRG", 1000000000 * COIN, 1000000 * COIN, COIN / 10},
+                                   {2820000, "KSho9zUYrFdTPPxfF6ye9sLurgKygeUEzL", 1000000000 * COIN, 1000000 * COIN, COIN / 10}};
 
         consensus.HardForkRule2DifficultyPrevBlockCount = 10;
         consensus.HardForkRule2LowerLimitMinBalance = 1000*COIN;
@@ -140,10 +144,14 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xc0;
-        pchMessageStart[1] = 0xc0;
-        pchMessageStart[2] = 0xc0;
-        pchMessageStart[3] = 0xc0;
+        pchMessageStart[0] = 0xfa;
+        pchMessageStart[1] = 0xcf;
+        pchMessageStart[2] = 0xb3;
+        pchMessageStart[3] = 0xdc;
+        oldPchMessageStart[0] = 0xc0;
+        oldPchMessageStart[1] = 0xc0;
+        oldPchMessageStart[2] = 0xc0;
+        oldPchMessageStart[3] = 0xc0;
         nDefaultPort = 22566;
         nPruneAfterHeight = 100000;
 
@@ -178,7 +186,12 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (  1492, uint256S("0xe1e3c5fd193697408f7dd987f03d114bee961eee1f506717266548002330fa79"))
+            (     1492, uint256S("0xe1e3c5fd193697408f7dd987f03d114bee961eee1f506717266548002330fa79"))
+            (  1000000, uint256S("0x4c4256a1958653092d1cb4b73ba5415abd91312e03eb928fed64a3e835aae77c"))
+            (  2000000, uint256S("0x3ef0c9dbf7ef9b18a72b0e1abed2a7fa8f5993e5cb5d42a626a6007916a02a4d"))
+            (  2500000, uint256S("0x4c32be723ec9613b5f948ade387f97e5ebe849e199b3f86b0ff9c84df5fe178c"))
+            (  2600000, uint256S("0x81106ee5e61a0946b990d280ef171ae626f055edd3ab5d24d4764a26f9d316c2"))
+            (  2700000, uint256S("0x25626cfbdf482bfb34f8541fc04d81293df3c9e928e4c771fb14129360d01f66"))
         };
 
         chainTxData = ChainTxData{
@@ -207,17 +220,23 @@ public:
         consensus.HardFork2Height = 2;
         consensus.HardFork3Height = 3;
 
-        consensus.HardForkRule1params = {{250, 10},
-                                         {260, 20},
-                                         {270, 30},
-                                         {280, 40},
-                                         {290, 50}};
+        consensus.HardForkRule1params = {{   250, 10},
+                                         {   260, 20},
+                                         {   270, 30},
+                                         {   280, 40},
+                                         {   290, 50},
+                                         {200000, 60}};
 
         consensus.HardForkRule2params = {{255, 2},
                                          {310, 3},
                                          {360, 4}};
 
         consensus.HardForkRule3params = {{265, 1}};
+
+        consensus.WhiteAddress = "mtzbBN6s3VN1AZoyXuaACzR4mWG1qwWdgq";
+        consensus.BlackAdresses = {{60, "mgk3Z3R2S7RhrTU7P1z4J7vJwVwcQSpmzi", 5 * COIN,  1 * COIN, COIN / 10},
+                                   {60, "mnzkVQKfQ6TjvLev7y9QfJAhrzM4pLDfiK", 5 * COIN,  1 * COIN, COIN / 10}};
+
 
         consensus.HardForkRule2DifficultyPrevBlockCount = 10;
         consensus.HardForkRule2LowerLimitMinBalance = 0.001*COIN;
@@ -257,6 +276,10 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0xcf;
         pchMessageStart[3] = 0xcf;
+        oldPchMessageStart[0] = 0xcf;
+        oldPchMessageStart[1] = 0xcf;
+        oldPchMessageStart[2] = 0xcf;
+        oldPchMessageStart[3] = 0xcf;
         nDefaultPort = 44566;
         nPruneAfterHeight = 1000;
 
@@ -289,7 +312,17 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                { 546, uint256S("000000002a936ca763904c3c35fce2f3556c559c0214345d31b1bcebf76acb70")},
+                {  546, uint256S("0x000000002a936ca763904c3c35fce2f3556c559c0214345d31b1bcebf76acb70")},
+                {10000, uint256S("0x162c95555e7313f9720d8437cb56a66e5f2c83122a459b0d4385fb672ff8f551")},
+                {20000, uint256S("0x2369794922491928565ca63245ae5c4ddc70be670c30c8dc2910c16899afbc81")},
+                {30000, uint256S("0xf3d8b234a540b61dc3c5b0eb46dd0c313e0f1a6b7b3236f2e480398c917ce3de")},
+                {40000, uint256S("0x230c2bac6edf2cec84859d6388371e1d15d6c6f9d2e1d81fda09593c0d3242c3")},
+                {50000, uint256S("0xd068092e30fe555d3f64e3e8dda2238e1879378e546977257588ca91d3011f8f")},
+                {60000, uint256S("0xe85d4cb581b49573bf100ccb37683a8d5ff8a88884bfaf11952b725a70ceb66c")},
+                {70000, uint256S("0x6955e2ade029aac81889b68b42249100e6fb4c1082713e3e3be634099325e389")},
+                {80000, uint256S("0x58ebe159a221183fe1ca5474d008dd79c16154683ffe0300de5f938dc3b771cd")},
+                {90000, uint256S("0x8d9dfa0204b24493141e5b917806a237a7a755b597a138ecc6a7a250bf71ccda")},
+                {100000, uint256S("0xe26212281f5b25f2b6d4f384ebfbfdf8e62c0138caf9a7ce66a077470c4af7ca")}
 			}
         };
 
@@ -356,6 +389,10 @@ public:
         pchMessageStart[1] = 0xbf;
         pchMessageStart[2] = 0xb5;
         pchMessageStart[3] = 0xda;
+        oldPchMessageStart[0] = 0xfa;
+        oldPchMessageStart[1] = 0xbf;
+        oldPchMessageStart[2] = 0xb5;
+        oldPchMessageStart[3] = 0xda;
         nDefaultPort = 19444;
         nPruneAfterHeight = 1000;
 
