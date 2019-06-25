@@ -186,12 +186,18 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (     1492, uint256S("0xe1e3c5fd193697408f7dd987f03d114bee961eee1f506717266548002330fa79"))
             (  1000000, uint256S("0x4c4256a1958653092d1cb4b73ba5415abd91312e03eb928fed64a3e835aae77c"))
+            (  1500000, uint256S("0xf56d06f7024fad702ef37a462a8124c4176022b173c3fadb83e8ba5a52e5ee71"))
             (  2000000, uint256S("0x3ef0c9dbf7ef9b18a72b0e1abed2a7fa8f5993e5cb5d42a626a6007916a02a4d"))
             (  2500000, uint256S("0x4c32be723ec9613b5f948ade387f97e5ebe849e199b3f86b0ff9c84df5fe178c"))
+            (  2550000, uint256S("0x07dbba1012a6707d99c19d253c92b807413a1bc30b71c631f463d379949ae55c"))
             (  2600000, uint256S("0x81106ee5e61a0946b990d280ef171ae626f055edd3ab5d24d4764a26f9d316c2"))
+            (  2650000, uint256S("0x9b2ada037f176981c69b1e03bbf407b71904dc97d9e31c1f91a3183541e87acc"))    
             (  2700000, uint256S("0x25626cfbdf482bfb34f8541fc04d81293df3c9e928e4c771fb14129360d01f66"))
+            (  2750000, uint256S("0x7b30f779771638117001519b842a5d1f14e263f1f5bd3bac907ef0650131d368"))
+            (  2755000, uint256S("0x42b1f386ed54ac21eba319f8ed035501a9ad82a5173726475d6ccc17cac20fee"))
+            (  2760000, uint256S("0x10b107eca65c927fe5addc3d2e76f83e7fa1a356f49581cda60cfe28ac761f76"))
+            (  2761900, uint256S("0xb7716dcf8b908c26b689dc63578e1d0227f5022d597b6b05570ec073d9b3a2d8"))
         };
 
         chainTxData = ChainTxData{
@@ -312,18 +318,14 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {  546, uint256S("0x000000002a936ca763904c3c35fce2f3556c559c0214345d31b1bcebf76acb70")},
-                {10000, uint256S("0x162c95555e7313f9720d8437cb56a66e5f2c83122a459b0d4385fb672ff8f551")},
-                {20000, uint256S("0x2369794922491928565ca63245ae5c4ddc70be670c30c8dc2910c16899afbc81")},
-                {30000, uint256S("0xf3d8b234a540b61dc3c5b0eb46dd0c313e0f1a6b7b3236f2e480398c917ce3de")},
-                {40000, uint256S("0x230c2bac6edf2cec84859d6388371e1d15d6c6f9d2e1d81fda09593c0d3242c3")},
-                {50000, uint256S("0xd068092e30fe555d3f64e3e8dda2238e1879378e546977257588ca91d3011f8f")},
-                {60000, uint256S("0xe85d4cb581b49573bf100ccb37683a8d5ff8a88884bfaf11952b725a70ceb66c")},
-                {70000, uint256S("0x6955e2ade029aac81889b68b42249100e6fb4c1082713e3e3be634099325e389")},
-                {80000, uint256S("0x58ebe159a221183fe1ca5474d008dd79c16154683ffe0300de5f938dc3b771cd")},
-                {90000, uint256S("0x8d9dfa0204b24493141e5b917806a237a7a755b597a138ecc6a7a250bf71ccda")},
-                {100000, uint256S("0xe26212281f5b25f2b6d4f384ebfbfdf8e62c0138caf9a7ce66a077470c4af7ca")}
-			}
+                {  1000, uint256S("0xe720d4d08f03d9aef8950b14b4917b6ea3daa6bd6448d1b96da76bee67edca9b")},
+                { 10000, uint256S("0x162c95555e7313f9720d8437cb56a66e5f2c83122a459b0d4385fb672ff8f551")},
+                {100000, uint256S("0xe26212281f5b25f2b6d4f384ebfbfdf8e62c0138caf9a7ce66a077470c4af7ca")},
+                {150000, uint256S("0x2dc9a4dcae6394bf7011c5a6a3ed76d12be5bb3a08a491ff42831e2eb3835ada")},
+                {200000, uint256S("0x383d8bea67f9c16e875e5d49cb918facf850094a6d2653746a989d4c25a240ac")},
+                {250000, uint256S("0x2687ec7509fcbc5064d3abf0b7ecb651fc6c7a8bec08b685a159d59a80589156")},
+                {255000, uint256S("0x4ed47783a897387a418e03cb5f85c8accdcbe3431ddbac316be48769064c7151")}
+            }
         };
 
         chainTxData = ChainTxData{
