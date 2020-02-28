@@ -12,11 +12,23 @@ According to a recent article in [Wired magazine](https://www.wired.com/story/bi
 
 2. The individual mining reward is only 1 Lynx (+ fees).
 
-3. The cost of a transaction is 1 Lynx/kb with a cap of 10 Lynx.
+3. The cost of a transaction is 0.0001 Lynx/kilobyte.
+
+4. Target 30 second block time.
+
+5. Hybrid Proof of Work “Rule 1“: A single miner address can’t win a block more than once every 30 minutes. 
+
+6. Hybrid Proof of Work “Rule 2“: The miner’s reward address balance must be greater than or equal to a required fluctuating minimum amount of Lynx to win a block.
+
+7. Hybrid Proof of Work “Rule 3“: By using random selection, the fastest miners are not always guaranteed to win the block reward.
 
 Lynx is a cryptocurrency from the past re-designed for the future. We designed Lynx to have minimal environmental impact because we’re committed to creating global solutions and maintaining a small carbon footprint. Lynx business rules encourage the use of low-cost computing (like a Raspberry Pi which only consumes less than 3 watts of electricity) to mine the coin. As a result, the electrical cost to maintain the Lynx network is a fraction of a fraction which results in a low environmental impact. The emphasis on low-cost computing also creates a decentralized, broad miner base which also strengthens the stability and security of the currency.
 
-## Mining for non-techies?
+## Find out how it works - read the Lynx Whitepaper!
+
+[https://getlynx.io/whitepaper](https://getlynx.io/whitepaper)
+
+## Mining for non-techies? (watch the video)
 
 [https://getlynx.io/can-non-techies-mine-lynx-crypto/](https://getlynx.io/can-non-techies-mine-lynx-crypto/)
 
