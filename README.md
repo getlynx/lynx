@@ -6,7 +6,7 @@ Lynx is a secure cryptocurrency with fast transaction speeds and low-transaction
 
 ## How is Lynx an "eco-friendly cryptocurrency"?
 
-According to a recent article in [Wired magazine](https://www.wired.com/story/bitcoin-global-warming/);, “Bitcoin emits the equivalent of 17.7 million tons of carbon dioxide every year.” That’s a big problem! At Lynx, we believe that for cryptocurrency to be considered a secure, financial solution for today’s global marketplace, it must be created with global sustainability in mind. The energy costs of high-volume mining rigs are too demanding and they create an over-reliance on fossil fuels. Lynx code discourages high-volume mining rigs because our code purposefully lacks incentives to mine it for profit. Here are some of the business rules that help us achieve this goal:
+According to a recent article in [Wired magazine](https://www.wired.com/story/bitcoin-global-warming/); “Bitcoin emits the equivalent of 17.7 million tons of carbon dioxide every year.” That’s a big problem! At Lynx, we believe that for cryptocurrency to be considered a secure, financial solution for today’s global marketplace, it must be created with global sustainability in mind. The energy costs of high-volume mining rigs are too demanding and they create an over-reliance on fossil fuels. Lynx code discourages high-volume mining rigs because our code purposefully lacks incentives to mine it for profit. Here are some of the business rules that help us achieve this goal:
 
 1. The mining reward takes one week to “mature.”
 
@@ -16,7 +16,7 @@ According to a recent article in [Wired magazine](https://www.wired.com/story/bi
 
 4. Target 30 second block time.
 
-5. Hybrid Proof of Work “Rule 1“: A single miner address can’t win a block more than once every 30 minutes. 
+5. Hybrid Proof of Work “Rule 1“: A single miner address can’t win a block more than once every 60 blocks. 
 
 6. Hybrid Proof of Work “Rule 2“: The miner’s reward address balance must be greater than or equal to a required fluctuating minimum amount of Lynx to win a block.
 
