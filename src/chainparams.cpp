@@ -99,7 +99,7 @@ public:
 
         consensus.HardForkRule3params = {{2760000, 1},
                                          {2940000, 2},
-                                         {3500000, 3}};
+                                         {9000000, 3}};
 
         consensus.WhiteAddress = "KQoKm4bzQvDAwiiFsPz3AE4UJHkHBvX6Bz";
         consensus.BlackAdresses = {{2820000, "KJ2MGS3jq4DPkVmE1ephMCbT7ojDcDSJRG", 1000000000 * COIN, 1000000 * COIN, COIN / 10},
